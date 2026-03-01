@@ -2,18 +2,17 @@ package routers
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/harshtripathi/postgres-with-go/middlewares"
+	"github.com/harshtripathi/postgres-with-go/handlers"
 )
 
-func Routers() *mux.Router {
+// SetupRouter registers routes
+func SetupRouter() *mux.Router {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/api/stock", middlewares.CreateStock).Methods("POST")
-	router.HandleFunc("/api/stock", middlewares.GetAllStock).Methods("GET")
-	router.HandleFunc("/api/stock/{id}", middlewares.GetStock).Methods("GET")
-	router.HandleFunc("/api/stock/{id}", middlewares.UpdateStock).Methods("PUT")
-	router.HandleFunc("/api/stock/{id}", middlewares.DeleteStock).Methods("DELETE")
+	router.HandleFunc("/api/stock", handlers.CreateStock).Methods("POST")
+	router.HandleFunc("/api/stock", handlers.GetAllStocks).Methods("GET")
+	router.HandleFunc("/api/stock/{id}", handlers.GetStockByID).Methods("GET")
 
 	return router
 }
